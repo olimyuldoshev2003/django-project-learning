@@ -170,6 +170,6 @@ def counter(request):
         "Post 4",
         "Post 5", 1, 2, 3, 4, 5
     ]
-    return render(request, "counter.html", )
+    return render(request, "counter.html", {"posts": posts})
 #################################################################
 
