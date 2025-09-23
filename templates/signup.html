@@ -7,21 +7,21 @@
   </head>
   <body>
     <!-- 8. -->
-     {% csrf_token %}
-
+    
     {% for message in messages %}
-        <h5 style="color: red;">{{message}}</h5>
+    <h5 style="color: red;">{{message}}</h5>
     {% endfor %}
-
-    <form action="POST" action="signup">
+    
+    <form method="POST" action="signup">
+      {% csrf_token %}
       <label for="">Username: </label>
       <input type="text" name="username" id="" /><br>
       <label for="">Email: </label>
-      <input type="text" name="email" id="" /><br>
-      <labelfor="">Password: </label for="">
-      <input type="text" name="password" id="" /><br>
+      <input type="email" name="email" id="" /><br>
+      <label for="">Password: </label for="">
+      <input type="password" name="password" id="" /><br>
       <label for="">Confirm Password: </label>
-      <input type="text" name="confirmPassword" id="" /><br>
+      <input type="password" name="confirmPassword" id="" /><br>
       <button type="submit" style="cursor: pointer;">Add</button>
     </form>
   </body>

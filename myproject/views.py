@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 from django.contrib import messages
 # from .models import Someone
 # Create your views here.
@@ -137,4 +137,39 @@ def signup(request):
             redirect("signup")
     else:
         return render (request, "signup.html")
+    
+def signin(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = auth.authenticate(username = username, password = password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect("/")
+        else:
+            messages.info(request, "Credentials invalid")
+            return redirect("signin")
+    return render(request, "signin.html")
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/")
+
 #################################################################
+
+# 9. Dynamic Routing
+#################################################################
+def post(request, pk):
+    return render(request, "post.html", {"pk": pk})
+
+def counter(request):
+    posts = [
+        "Post 1",
+        "Post 2",
+        "Post 3",
+        "Post 4",
+        "Post 5", 1, 2, 3, 4, 5
+    ]
+    return render(request, "counter.html", {"posts": posts})
+#################################################################
+

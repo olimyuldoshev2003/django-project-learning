@@ -11,5 +11,11 @@
 
     <!-- 4. -->
     <!-- <h1>Word: {{text}}</h1> -->
+
+    <!-- 9. -->
+
+    {% for post in posts %}
+    <a href="{% url 'post' post %}">{{post}}</a></br>
+    {% endfor %}
   </body>
 </html>
